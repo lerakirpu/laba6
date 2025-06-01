@@ -1,18 +1,17 @@
 #include "Matrix.h"   
 #include <cstdlib>   
-#include <ctime>   
+#include <ctime> 
+#include <random>  
 
-Matrix::Matrix() : rows(2), column(2), matrix(rows, std::vector<int>(column, 0)) {}
-// Конструктор: создает матрицу 2x2, заполненную нулями
+// Конструктор (создает 2x2 матрицу с нулями)
+Matrix::Matrix() : rows(2), column(2), matrix(2, std::vector<int>(2, 0)) {}
 
-// Параметризованный конструктор
-Matrix::Matrix(int r, int c) : rows(r), column(c), matrix(r, std::vector<int>(c)) {
-    srand(time(0));
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            matrix[i][j] = rand() % 100;
-        }
-    }
+// Конструктор (создает матрицу r на c и заполняет случайными числами)
+Matrix::Matrix(int r, int c) : rows(r), column(c), matrix(r, std::vector<int>(c))
+{
+    for (int i = 0; i < r; ++i)
+        for (int j = 0; j < c; ++j)
+            matrix[i][j] = rand() % 10; // Заполнение случайными числами от 0 до 99
 }
 
 // Деструктор 
